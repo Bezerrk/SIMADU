@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SIMADU - Alertas Preventivos</title>
+    <link rel="stylesheet" href="{% static 'alerts.css' %}">
+</head>
+<body>
+    {% include 'parts/navbar.html' %}
+
+    <div class="main-container">
+        <div class="alerts-feed">
+            <h2 class="section-title">Painel de Alertas</h2>
+            <p class="section-subtitle">Acompanhe os avisos meteorológicos e de sensores em tempo real para Corumbá.</p>
+            <div class="alert-card critico">
+                <div class="alert-header">
+                    <h3 class="alert-title">ALERTA CRÍTICO</h3>
+                    <span class="alert-time">Emitido hoje às 14:30</span>
+                </div>
+                <div class="alert-body">
+                    <strong>Local:</strong>Ponto Piloto 01 (Centro)<br>
+                    <strong>Motivo:</strong> O nível da água ultrapassou a cota de alerta e há registro de chuva acumulada acima do limite de segurança.<br>
+                    <strong>Recomendação:</strong> Evite transitar na região. A Defesa Civil já foi acionada.
+                </div>
+            </div>
+            <div class="alert-card atencao">
+                <div class="alert-header">
+                    <h3 class="alert-title">Atenção: Previsão de Chuvas</h3>
+                    <span class="alert-time">Emitido hoje às 10:00</span>
+                </div>
+                <div class="alert-body">
+                    <strong>Fonte:</strong> Integração INMET / OpenWeather<br>
+                    <strong>Motivo:</strong> Previsão de precipitação intensa para as próximas horas superior ao limite de atenção.<br>
+                    <strong>Recomendação:</strong> Moradores de áreas vulneráveis devem ficar em estado de observação.
+                </div>
+            </div>
+
+        </div>
+        <div class="subscribe-panel">
+            <h3>Receba Alertas no Celular</h3>
+            <p>Cadastre-se gratuitamente para receber notificações preventivas por SMS e e-mail sempre que houver risco de alagamento.</p>
+
+            <form action="#" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone (SMS)</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(67) 99999-9999" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail (Opcional)</label>
+                    <input type="email" id="email" name="email" placeholder="seu@email.com">
+                </div>
+
+                <div class="lgpd-text">
+                    <input type="checkbox" id="lgpd" required>
+                    <label for="lgpd" class="lgpd-label">
+                        Autorizo o uso dos meus dados pessoais exclusivamente para o envio de alertas da Defesa Civil, conforme a Lei Geral de Proteção de Dados (LGPD).
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit">Confirmar Cadastro</button>
+            </form>
+        </div>
+
+    </div>
+    {% include 'parts/footer.html' %}
+
+</body>
+</html>

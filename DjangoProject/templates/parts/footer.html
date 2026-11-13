@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<section class="faq-section" style="background-color: #f8fafc; padding: 40px 20px; border-top: 1px solid #e2e8f0; margin-top: 40px;">
+    <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="color: #1e293b; margin-bottom: 20px; font-size: 1.5rem;">Dúvidas Frequentes (FAQ)</h2>
+
+        <details style="background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <summary style="font-weight: bold; cursor: pointer; color: #334155;">Como o SIMADU emite os alertas de alagamento?</summary>
+            <p style="margin-top: 10px; color: #64748b; font-size: 0.95rem;">O sistema monitora dados meteorológicos em tempo real (INMET/OpenWeather) e sensores de nível d'água instalados em pontos críticos de Corumbá, disparando avisos automáticos quando os limites de segurança são atingidos.</p>
+        </details>
+
+        <details style="background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <summary style="font-weight: bold; cursor: pointer; color: #334155;">Quem pode se cadastrar para receber os alertas?</summary>
+            <p style="margin-top: 10px; color: #64748b; font-size: 0.95rem;">Toda a população de Corumbá pode se cadastrar gratuitamente para receber notificações preventivas diretamente no navegador, e-mail ou por SMS.</p>
+        </details>
+
+        <details style="background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <summary style="font-weight: bold; cursor: pointer; color: #334155;">Os meus dados pessoais estão seguros?</summary>
+            <p style="margin-top: 10px; color: #64748b; font-size: 0.95rem;">Sim. O tratamento de dados pessoais segue rigorosamente as diretrizes da Lei Geral de Proteção de Dados (LGPD).</p>
+        </details>
+    </div>
+</section>
+
+<footer style="background-color: #0f172a; color: #f8fafc; padding: 40px 40px; font-family: Arial, sans-serif; width: 100%; box-sizing: border-box;">    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+
+        <div style="flex: 1; min-width: 250px;">
+            <h3 style="color: #38bdf8; margin-bottom: 15px;">SIMADU</h3>
+            <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">
+                Sistema Inteligente de Monitoramento de Alagamentos e Drenagem Urbana.<br>
+                Município de Corumbá - Mato Grosso do Sul.
+            </p>
+        </div>
+
+        <div style="flex: 1; min-width: 200px;">
+            <h4 style="margin-bottom: 15px; font-size: 1rem;">Navegação</h4>
+            <ul style="list-style: none; padding: 0; line-height: 2;">
+                <li><a href="{% url 'home' %}" style="color: #94a3b8; text-decoration: none;">Início</a></li>
+                <li><a href="{% url 'map' %}" style="color: #94a3b8; text-decoration: none;">Mapa de Riscos</a></li>
+                <li><a href="{% url 'ocurrences' %}" style="color: #94a3b8; text-decoration: none;">Ocorrências</a></li>
+                <li><a href="{% url 'alerts' %}" style="color: #94a3b8; text-decoration: none;">Alertas</a></li>
+            </ul>
+        </div>
+
+        <div style="flex: 1.5; min-width: 280px;">
+            <h4 style="margin-bottom: 15px; font-size: 1rem;">Receba Alertas Preventivos</h4>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">
+                Inscreva o seu e-mail para receber avisos meteorológicos e boletins informativos da Defesa Civil.
+            </p>
+            <form action="#" method="POST" style="display: flex; gap: 10px;">
+                {% csrf_token %}
+                <input type="email" placeholder="Seu e-email principal" required style="flex: 1; padding: 10px; border-radius: 4px; border: none; outline: none;">
+                <button type="submit" style="background-color: #38bdf8; color: #0f172a; border: none; padding: 10px 18px; border-radius: 4px; font-weight: bold; cursor: pointer;">Cadastrar</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div style="max-width: 1100px; margin: 40px auto 0 auto; border-top: 1px solid #1e293b; padding-top: 20px; text-align: center; color: #64748b; font-size: 0.85rem;">
+        &copy; 2026/2027 SIMADU - Projeto Integrado Sistemas de Informação UFMS. Todos os direitos reservados.
+    </div>
+</footer>
+</body>
+</html>

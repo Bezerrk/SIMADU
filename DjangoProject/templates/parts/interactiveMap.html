@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <style>
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 70vh;
+        }
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mapa Interativo de Alagamentos</h1>
+        <p>Monitoramento em tempo real dos pontos críticos e áreas vulneráveis em Corumbá (MS).</p>
+        <div id="map"></div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([-19.0083, -57.6533], 14);
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 19,
+            attribution: 'Tiles &copy; Esri'
+        }).addTo(map);
+        var pontoCritico1 = L.marker([-19.0120, -57.6480]).addTo(map);
+        pontoCritico1.bindPopup("<b>Ponto Crítico 01</b><br>Região central / Escoamento lento.<br>Status: Monitorado por Sensor IoT.").openPopup();
+
+        var pontoCritico2 = L.marker([-18.9950, -57.6600]).addTo(map);
+        pontoCritico2.bindPopup("<b>Ponto Crítico 02</b><br>Área sujeita a alagamento em fortes chuvas.");
+
+        var pontoCritico3 = L.marker([-19.0200, -57.6400]).addTo(map);
+        pontoCritico3.bindPopup("<b>Ponto Crítico 03 </b><br>Próximo a vias de circulação urbana.");
+    </script>
+</body>
+</html>
