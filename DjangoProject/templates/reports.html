@@ -1,15 +1,157 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>SIMADU - Home</title>
+    <title>SIMADU - Relatórios</title>
+    <link rel="stylesheet" href="{% static 'reports.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
     {% include 'parts/navbar.html' %}
-    <div class="container">
-        <h1>Bem-vindo ao SIMADU</h1>
-        <p>Interface de navegação inicial do sistema de monitoramento de alagamentos.</p>
+
+    <div class="main-container">
+
+        <div class="header-section">
+            <h2 class="section-title">Relatórios e Inteligência (BI)</h2>
+            <p class="section-subtitle">Apoio ao planejamento estratégico de obras de drenagem e análise histórica de alagamentos[cite: 3, 7].</p>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value">124</div>
+                <div class="kpi-label">Ocorrências Registadas (2027)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">15</div>
+                <div class="kpi-label">Alertas Críticos Emitidos</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">8</div>
+                <div class="kpi-label">Bairros em Nível de Atenção</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">3</div>
+                <div class="kpi-label">Sensores IoT Ativos (Piloto)</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+
+            <div class="chart-card">
+                <h3 class="chart-title">Evolução Temporal (Ocorrências vs Precipitação)</h3>
+                <div class="chart-container">
+                    <canvas id="evolucaoChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">Ocorrências por Gravidade</h3>
+                <div class="chart-container">
+                    <canvas id="gravidadeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card full-width">
+                <h3 class="chart-title">Ocorrências por Bairro (Áreas mais Vulneráveis)</h3>
+                <div class="chart-container">
+                    <canvas id="bairrosChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
     </div>
+
     {% include 'parts/footer.html' %}
+
+    <script>
+        Chart.defaults.font.family = 'Arial, sans-serif';
+        Chart.defaults.color = '#64748b';
+
+        const ctxEvolucao = document.getElementById('evolucaoChart').getContext('2d');
+        new Chart(ctxEvolucao, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                datasets: [{
+                    label: 'Ocorrências Registadas',
+                    data: [12, 45, 30, 8, 2, 0],
+                    borderColor: '#38bdf8',
+                    backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Precipitação (mm)',
+                    data: [80, 250, 180, 50, 20, 10],
+                    borderColor: '#1e293b',
+                    borderDash: [5, 5],
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                scales: {
+                    y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Nº Ocorrências' } },
+                    y1: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'Chuva (mm)' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        const ctxGravidade = document.getElementById('gravidadeChart').getContext('2d');
+        new Chart(ctxGravidade, {
+            type: 'doughnut',
+            data: {
+                labels: ['Alta', 'Média', 'Baixa'],
+                datasets: [{
+                    data: [15, 35, 50],
+                    backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
+                cutout: '65%'
+            }
+        });
+
+        const ctxBairros = document.getElementById('bairrosChart').getContext('2d');
+        new Chart(ctxBairros, {
+            type: 'bar',
+            data: {
+                labels: ['Centro', 'Maria Leite', 'Aeroporto', 'Cristo Redentor', 'Popular Velha'],
+                datasets: [{
+                    label: 'Nº de Ocorrências',
+                    data: [42, 28, 22, 18, 14],
+                    backgroundColor: '#38bdf8',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

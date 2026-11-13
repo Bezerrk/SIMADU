@@ -1,15 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>SIMADU - Home</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
 </head>
 <body>
     {% include 'parts/navbar.html' %}
-    <div class="container">
-        <h1>Bem-vindo ao SIMADU</h1>
-        <p>Interface de navegação inicial do sistema de monitoramento de alagamentos.</p>
+
+    <div class="main-wrapper">
+        <h1 class="welcome-title">Bem-vindo ao SIMADU</h1>
+
+        <div class="presentation-block">
+
+            <h2 class="presentation-title">O que é o SIMADU?</h2>
+
+            <p class="presentation-text">
+                O <strong>SIMADU (Sistema Inteligente de Monitoramento de Alagamentos e Drenagem Urbana)</strong> é uma plataforma web integrada desenvolvida para mitigar os impactos das chuvas intensas, com aplicação piloto no município de Corumbá, Mato Grosso do Sul.
+            </p>
+
+            <p class="presentation-text">
+                Devido ao relevo plano e à influência do regime de cheias do Pantanal, a cidade enfrenta alagamentos recorrentes. O sistema centraliza informações dispersas para apoiar a <strong>Defesa Civil</strong> nas ações de resposta rápida e a <strong>Secretaria de Obras</strong> no planejamento estratégico de infraestrutura.
+            </p>
+
+            <h3 class="presentation-subtitle">Principais Pilares do Sistema:</h3>
+
+            <div class="features-grid">
+
+                <div class="feature-card map">
+                    <h4 class="feature-title">📍 Mapeamento e Histórico</h4>
+                    <p class="feature-text">Cadastro georreferenciado de pontos críticos, áreas vulneráveis e armazenamento do histórico de ocorrências.</p>
+                </div>
+
+                <div class="feature-card monitor">
+                    <h4 class="feature-title">📡 Monitoramento em Tempo Real</h4>
+                    <p class="feature-text">Integração com dados meteorológicos (INMET/OpenWeather) e leitura contínua através de sensores IoT de nível d'água.</p>
+                </div>
+
+                <div class="feature-card alert">
+                    <h4 class="feature-title">⚠️ Alertas Preventivos</h4>
+                    <p class="feature-text">Emissão de avisos automáticos via SMS, e-mail e push para a população cadastrada e órgãos responsáveis com base em regras de segurança.</p>
+                </div>
+
+                <div class="feature-card report">
+                    <h4 class="feature-title">📊 Inteligência e Relatórios</h4>
+                    <p class="feature-text">Painel de gestão com indicadores e geração de relatórios analíticos para embasar a execução de obras de drenagem.</p>
+                </div>
+
+            </div>
+        </div>
     </div>
+
     {% include 'parts/footer.html' %}
 </body>
 </html>
